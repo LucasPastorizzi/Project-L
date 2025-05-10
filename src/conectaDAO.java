@@ -31,14 +31,6 @@ public class conectaDAO {
     Connection conn;  // variável de instância
     PreparedStatement st;
 
-    public Connection getConn() {
-        return conn;
-    }
-
-    public void setConn(Connection conn) {
-        this.conn = conn;
-    }
-
     public Connection connectDB() {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/att1", "root", "@usuario");
