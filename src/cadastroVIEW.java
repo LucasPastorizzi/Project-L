@@ -1,3 +1,10 @@
+
+import com.mysql.jdbc.Connection;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -140,17 +147,36 @@ public class cadastroVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastroNomeActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        ProdutosDTO produto = new ProdutosDTO();
-        String nome = cadastroNome.getText();
-        String valor = cadastroValor.getText();
-        String status = "A Venda";
-        produto.setNome(nome);
-        produto.setValor(Integer.parseInt(valor));
-        produto.setStatus(status);
-        
-        ProdutosDAO produtodao = new ProdutosDAO();
-        produtodao.cadastrarProduto(produto);
-        
+
+ProdutosDTO fcc = new ProdutosDTO();
+conectaDAO fcD = new conectaDAO();
+ProdutosDAO fcDAO = new ProdutosDAO();
+
+fcc.setNome(cadastroNome.getText());
+fcc.setValor(Integer.parseInt(cadastroValor.getText()));
+
+boolean status = fcD.connectDB() != null;
+int resposta;
+
+if (!status) {
+    JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco de dados!");
+} else {
+    resposta = fcDAO.cadastrarProduto(fcc); // supondo que você tenha esse método
+
+    if (resposta == 1) {
+        JOptionPane.showMessageDialog(null, "DADOS INCLUÍDOS com sucesso!!");
+    } else {
+        JOptionPane.showMessageDialog(null, "Erro ao incluir dados!");
+    }
+}
+
+// Limpa os campos
+cadastroNome.setText("");
+cadastroValor.setText("");
+
+// Desconecta
+fcD.Desconectar();
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
