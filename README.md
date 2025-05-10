@@ -1,5 +1,14 @@
-O projeto se trata de um sistema de leilões, ótimo sistema para acessibilidade do usuário!
+# 🛒 Sistema de Leilões
 
-As tecnologias usadas nesse sistema foram ;
-Java 
-My Sql
+Este projeto é um sistema de leilões, desenvolvido para oferecer uma experiência acessível e eficiente aos usuários. Ele permite a criação, exibição e participação em leilões de forma intuitiva.
+
+## 🚀 Tecnologias utilizadas
+
+- Java  
+- MySQL
+
+## 🖼️ Captura de Tela
+
+### Página de Login
+![Página de Login](./assets/Leil.png)
+
