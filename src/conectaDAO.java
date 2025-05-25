@@ -33,7 +33,7 @@ public class conectaDAO {
 
     public Connection connectDB() {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/att1", "root", "@usuario");
+conn = DriverManager.getConnection("jdbc:mysql://localhost/att1?useSSL=false", "root", "@usuario");
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro ConectaDAO: " + erro.getMessage());
         }

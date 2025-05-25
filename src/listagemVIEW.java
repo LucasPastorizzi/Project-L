@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -136,12 +137,39 @@ public class listagemVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        String id = id_produto_venda.getText();
-        
-        ProdutosDAO produtosdao = new ProdutosDAO();
-        
-        //produtosdao.venderProduto(Integer.parseInt(id));
-        listarProdutos();
+ String idTexto = id_produto_venda.getText().trim(); 
+
+    if (idTexto.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Informe o ID do produto!");
+        return;
+    }
+
+    try {
+        int id = Integer.parseInt(idTexto); 
+
+        ProdutosDAO dao = new ProdutosDAO();
+        boolean sucesso = dao.venderProduto(id); 
+
+        if (sucesso) {
+           
+            DefaultTableModel modelo = (DefaultTableModel) listaProdutos.getModel(); 
+            for (int i = 0; i < modelo.getRowCount(); i++) {
+                int idTabela = Integer.parseInt(modelo.getValueAt(i, 0).toString());
+
+                if (idTabela == id) {
+                    modelo.setValueAt("Vendido", i, 3); 
+                    break;
+                }
+            }
+
+            JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Produto não encontrado ou erro ao vender.");
+        }
+
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(null, "ID inválido.");
+    }       
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
