@@ -10,5 +10,7 @@ Este projeto é um sistema de leilões, desenvolvido para oferecer uma experiên
 ## 🖼️ Captura de Tela
 
 ### Página de Login
-![Página de Login](./assets/Leil.png)
+![Página de Login](./assets/img.png)
+![Pages](./assets/img1.png)
+
 
